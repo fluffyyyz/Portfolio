@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel De Jesus | Game Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- THEME SETTINGS --- */
+        :root {
+            --bg-main: #050510; /* Darker Navy */
+            --gold-accent: #FFD700;
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+            --card-glass: rgba(20, 20, 35, 0.75);
+            --text-light: #ffffff;
+            --text-dim: #b0b0b0;
+            --linkedin-blue: #0077b5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #050510, #0a0a2a), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-accent);
+        }
+
+        /* --- TEXT STYLES --- */
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--gold-accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gold-accent);
+            color: #000;
+            box-shadow: var(--gold-glow);
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 30px var(--gold-accent);
+        }
+
+        .btn-linkedin {
+            background: var(--linkedin-blue);
+            color: white;
+            border: 1px solid var(--linkedin-blue);
+        }
+
+        .btn-linkedin:hover {
+            background: #005582;
+            transform: scale(1.05);
+        }
+
+        /* --- HEADER --- */
+        header {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .skill-tag.highlight {
+            border-color: var(--gold-accent);
+            color: var(--gold-accent);
+        }
+
+        /* --- PROJECTS --- */
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--gold-accent);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .tech-mini {
+            font-size: 0.85rem;
+            color: var(--gold-accent);
+            font-family: monospace;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- CONTACT --- */
+        .contact-info {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-icon { color: var(--gold-accent); font-size: 1.2rem; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <h1>MIGUEL DE JESUS</h1>
+        <p class="subtitle">Game Developer | Unity & Casino Logic Specialist</p>
+        
+        <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Contact Me</a>
+            <a href="https://www.linkedin.com/in/miguel-de-jesus-3bb8a2399/" target="_blank" class="btn btn-linkedin">
+                Connect on LinkedIn
+            </a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="glass-card">
+            <h2 style="text-align: center;">Technical Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag highlight">Unity 3D/2D</span>
+                <span class="skill-tag highlight">C# Scripting</span>
+                <span class="skill-tag highlight">Casino Mechanics (RTP)</span>
+                <span class="skill-tag">HTML5 Canvas</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">Flutter</span>
+                <span class="skill-tag">Visual Studio</span>
+                <span class="skill-tag">UI/UX Design</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="glass-card">
+            <h2>Showcase Projects</h2>
+
+            <div class="project-card">
+                <div class="project-title">3x3 Slot Mechanics</div>
+                <span class="tech-mini">UNITY | C# | BET LOGIC</span>
+                <p>
+                    Engineered a precise 3x3 slot architecture focusing on scalable <strong>Betting Mechanics</strong> and <strong>Value Optimization</strong>. Implemented a dynamic reward system that calculates payouts based on variable bet sizing, ensuring accurate RTP and immediate player feedback.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">CodeQuest Puzzler</div>
+                <span class="tech-mini">UNITY | C# | EDUCATIONAL</span>
+                <p>
+                    Created puzzle-based coding levels to teach programming basics. Implemented complex gameplay logic and player progression using Object Oriented Programming.
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Multiplayer Lobby System</div>
+                <span class="tech-mini">UNITY | UI SYSTEMS</span>
+                <p>
+                    Developed lobby features: player list, settings, and join-by-code. Implemented real-time UI updates and player interactions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="glass-card" style="text-align: center;">
+            <h2>Get In Touch</h2>
+            <p style="color: var(--text-dim);">Open for OJT and Game Development opportunities.</p>
+            
+            <div class="contact-info">
+                
+                <div class="contact-item">
+                    <span class="contact-icon">✉</span>
+                    <a href="mailto:dejesusmiguel1156@gmail.com" style="color: #fff; text-decoration: none;">dejesusmiguel1156@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>0966 467 0323</span>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>Sabang, Lipa City, Batangas</span>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <a href="https://www.linkedin.com/in/miguel-de-jesus-3bb8a2399/" target="_blank" class="btn btn-linkedin">
+                        View LinkedIn Profile
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; color: #555; font-size: 0.8rem;">
+        &copy; 2024 Miguel De Jesus.
+    </footer>
+
+</body>
+</html>
