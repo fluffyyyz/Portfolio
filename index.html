@@ -8,10 +8,13 @@
     <style>
         /* --- THEME SETTINGS --- */
         :root {
-            --bg-main: #050510; /* Darker Navy */
-            --gold-accent: #FFD700;
-            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.3);
-            --card-glass: rgba(20, 20, 35, 0.75);
+            /* New Primary Color: Neon Cyan */
+            --primary-accent: #00ffff; 
+            --primary-gradient: linear-gradient(135deg, #00ffff, #00aaff);
+            --primary-glow: 0 0 20px rgba(0, 255, 255, 0.4);
+
+            --bg-dark: #020205;
+            --card-glass: rgba(10, 15, 30, 0.85); /* Slightly bluer glass */
             --text-light: #ffffff;
             --text-dim: #b0b0b0;
             --linkedin-blue: #0077b5;
@@ -21,12 +24,12 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #050510, #0a0a2a), 
-                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');
+            /* NEW BACKGROUND IMAGE & BLEND */
+            background: linear-gradient(to bottom, rgba(2, 2, 5, 0.8), rgba(10, 10, 35, 0.9)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            background-blend-mode: overlay;
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
@@ -42,19 +45,20 @@
         /* Glass Cards */
         .glass-card {
             background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.15); /* Updated border color */
             border-radius: 16px;
-            padding: 40px;
+            padding: 50px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .glass-card:hover {
             transform: translateY(-5px);
-            border-color: var(--gold-accent);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
         }
 
         /* --- TEXT STYLES --- */
@@ -63,8 +67,9 @@
             line-height: 1.1;
             font-weight: 800;
             margin-bottom: 15px;
-            background: linear-gradient(to right, #fff, var(--gold-accent));
-            background-clip: text;
+            /* FIX FOR THE CSS WARNING IS INCLUDED HERE: */
+            background: linear-gradient(to right, #fff, var(--primary-accent));
+            background-clip: text; 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -72,10 +77,10 @@
         h2 {
             font-size: 2.2rem;
             margin-bottom: 30px;
-            color: var(--gold-accent);
+            color: var(--primary-accent);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
             padding-bottom: 10px;
             display: inline-block;
         }
@@ -95,7 +100,7 @@
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
@@ -108,25 +113,26 @@
         }
 
         .btn-primary {
-            background: var(--gold-accent);
+            background: var(--primary-gradient);
             color: #000;
-            box-shadow: var(--gold-glow);
+            box-shadow: var(--primary-glow);
         }
 
         .btn-primary:hover {
-            background: #fff;
-            box-shadow: 0 0 30px var(--gold-accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--primary-accent);
+            color: #fff;
         }
 
         .btn-linkedin {
-            background: var(--linkedin-blue);
+            background: transparent;
             color: white;
-            border: 1px solid var(--linkedin-blue);
+            border: 2px solid var(--linkedin-blue);
         }
 
         .btn-linkedin:hover {
-            background: #005582;
-            transform: scale(1.05);
+            background: var(--linkedin-blue);
+            box-shadow: 0 0 20px rgba(0, 119, 181, 0.4);
         }
 
         /* --- HEADER --- */
@@ -150,63 +156,93 @@
         .skill-tag {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 30px;
             font-weight: 500;
             transition: 0.3s;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+            background: rgba(0, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
 
         .skill-tag.highlight {
-            border-color: var(--gold-accent);
-            color: var(--gold-accent);
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
         }
 
         /* --- PROJECTS --- */
         .project-card {
             background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--gold-accent);
-            padding: 25px;
+            border-left: 4px solid var(--primary-accent);
+            padding: 30px;
             margin-bottom: 25px;
             border-radius: 0 10px 10px 0;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            padding-left: 35px;
+            box-shadow: -5px 0 15px rgba(0, 255, 255, 0.1);
         }
 
         .project-title {
             font-size: 1.5rem;
             color: #fff;
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .tech-mini {
             font-size: 0.85rem;
-            color: var(--gold-accent);
+            color: var(--primary-accent);
             font-family: monospace;
             margin-bottom: 15px;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- CONTACT --- */
         .contact-info {
             font-size: 1.1rem;
-            margin-top: 20px;
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
 
-        .contact-icon { color: var(--gold-accent); font-size: 1.2rem; }
+        .contact-item:hover {
+            border-color: var(--primary-accent);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-icon { color: var(--primary-accent); font-size: 1.4rem; }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.8rem; }
             .btn-group { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
+            .contact-item { width: 100%; justify-content: flex-start; }
         }
     </style>
 </head>
@@ -226,7 +262,7 @@
 
     <section class="container">
         <div class="glass-card">
-            <h2 style="text-align: center;">Technical Skills</h2>
+            <h2 style="text-align: center;">Technical Arsenal</h2>
             <div class="skills-grid">
                 <span class="skill-tag highlight">Unity 3D/2D</span>
                 <span class="skill-tag highlight">C# Scripting</span>
@@ -256,7 +292,7 @@
                 <div class="project-title">CodeQuest Puzzler</div>
                 <span class="tech-mini">UNITY | C# | EDUCATIONAL</span>
                 <p>
-                    Created puzzle-based coding levels to teach programming basics. Implemented complex gameplay logic and player progression using Object Oriented Programming.
+                    Created puzzle-based coding levels to teach programming basics. Implemented complex gameplay logic and player progression using Object Oriented Programming (OOP).
                 </p>
             </div>
 
@@ -264,7 +300,7 @@
                 <div class="project-title">Multiplayer Lobby System</div>
                 <span class="tech-mini">UNITY | UI SYSTEMS</span>
                 <p>
-                    Developed lobby features: player list, settings, and join-by-code. Implemented real-time UI updates and player interactions.
+                    Developed lobby features: player list, settings, and join-by-code. Implemented real-time UI updates and data synchronization.
                 </p>
             </div>
         </div>
@@ -272,8 +308,8 @@
 
     <section id="contact" class="container">
         <div class="glass-card" style="text-align: center;">
-            <h2>Get In Touch</h2>
-            <p style="color: var(--text-dim);">Open for OJT and Game Development opportunities.</p>
+            <h2>Initialize Connection</h2>
+            <p style="color: var(--text-dim);">Ready for OJT and Game Development opportunities.</p>
             
             <div class="contact-info">
                 
@@ -292,8 +328,8 @@
                     <span>Sabang, Lipa City, Batangas</span>
                 </div>
 
-                <div style="margin-top: 20px;">
-                    <a href="https://www.linkedin.com/in/miguel-de-jesus-3bb8a2399/" target="_blank" class="btn btn-linkedin">
+                <div style="margin-top: 10px;">
+                    <a href="https://www.linkedin.com/in/miguel-de-jesus-3bb8a2399/" target="_blank" class="btn btn-linkedin" style="width:100%; justify-content:center;">
                         View LinkedIn Profile
                     </a>
                 </div>
